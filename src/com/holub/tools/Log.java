@@ -26,6 +26,7 @@ import java.io.*;
  *
  * @include /etc/license.txt
  */
+
 public class Log
 {	/** Send all log messages for the indicated package to
 	 *	the console (System.err). The normal header (which holds the

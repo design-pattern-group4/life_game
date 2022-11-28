@@ -1,19 +1,14 @@
 package com.holub.life;
 
-import java.io.*;
-
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-
 import com.holub.io.Files;
 import com.holub.ui.MenuSite;
 
-import com.holub.life.Cell;
-import com.holub.life.Storable;
-import com.holub.life.Clock;
-import com.holub.life.Neighborhood;
-import com.holub.life.Resident;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * The Universe is a mediator that sits between the Swing
@@ -166,8 +161,8 @@ public class Universe extends JPanel
 	private void doLoad()
 	{	try
 		{
-			FileInputStream in = new FileInputStream(
-			   Files.userSelected(".",".life","Life File","Load"));
+			FileInputStream in = new FileInputStream(Files.userSelected(".",".life","Life File","Load"));
+
 
 			Clock.instance().stop();		// stop the game and
 			outermostCell.clear();			// clear the board.
@@ -189,7 +184,7 @@ public class Universe extends JPanel
 	{	try
 		{
 			FileOutputStream out = new FileOutputStream(
-				  Files.userSelected(".",".life","Life File","Write"));
+					Files.userSelected(".",".life","Life File","Write"));
 
 			Clock.instance().stop();		// stop the game
 
