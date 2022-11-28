@@ -3,6 +3,9 @@ package com.holub.life;
 import com.holub.ui.*;
 
 import javax.swing.*;
+
+import com.holub.ui.MenuSite;
+import com.holub.ui.MenuVisitor;
 import java.awt.*;
 
 /*******************************************************************
@@ -20,8 +23,9 @@ public final class Life extends JFrame
 	}
 
 	private Life()
-	{	super( "The Game of Life. "
-					+"(c)2003 Allen I. Holub <http://www.holub.com>");
+	{
+		super("채조보양's The Game of Life. ");
+
 
 		// Must establish the MenuSite very early in case
 		// a subcomponent puts menus on it.
@@ -30,6 +34,10 @@ public final class Life extends JFrame
 		setDefaultCloseOperation	( EXIT_ON_CLOSE 		);
 		getContentPane().setLayout	( new BorderLayout()	);
 		getContentPane().add( Universe.instance(), BorderLayout.CENTER); //{=life.java.install}
+
+		MenuVisitor visitor = new MenuVisitor();
+
+
 
 		pack();
 		setVisible( true );
