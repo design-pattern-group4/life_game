@@ -1,14 +1,10 @@
 package com.holub.life;
 
+import com.holub.ui.Colors;
+
 import java.awt.*;
-import javax.swing.*;
-import com.holub.ui.Colors;	// Contains constants specifying various
-							// colors not defined in java.awt.Color.
-import com.holub.life.Cell;
-import com.holub.life.Storable;
-import com.holub.life.Direction;
-import com.holub.life.Neighborhood;
-import com.holub.life.Universe;
+
+// colors not defined in java.awt.Color.
 
 /*** ****************************************************************
  * The Resident class implements a single cell---a "resident" of a
@@ -19,7 +15,7 @@ import com.holub.life.Universe;
 
 public final class Resident implements Cell
 {
-	private static final Color BORDER_COLOR = Colors.DARK_YELLOW;
+	private static final Color BORDER_COLOR  = Colors.DARK_YELLOW;
 	private static final Color LIVE_COLOR 	= Color.RED;
 	private static final Color DEAD_COLOR   = Colors.LIGHT_YELLOW;
 
@@ -118,8 +114,10 @@ public final class Resident implements Cell
 		{	if( amAlive = willBeAlive = memento.isAlive(upperLeft) )
 				return true;
 		}
-		else if( amAlive )  					// store only live cells
+		else if( amAlive ){
 			memento.markAsAlive( upperLeft );
+		}
+
 
 		return false;
 	}

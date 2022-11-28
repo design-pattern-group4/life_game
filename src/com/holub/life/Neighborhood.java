@@ -1,21 +1,14 @@
 package com.holub.life;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import java.io.*;
-import javax.swing.*;
-
-import com.holub.io.Files;
-import com.holub.life.Cell;
-import com.holub.ui.MenuSite;
-import com.holub.ui.Colors;
 import com.holub.asynch.ConditionVariable;
+import com.holub.ui.Colors;
 
-import com.holub.life.Cell;
-import com.holub.life.Clock;
-import com.holub.life.Direction;
-import com.holub.life.Storable;
+import java.awt.*;
+import java.io.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+
 
 /***
  * A group of {@link Cell} objects. Cells are grouped into neighborhoods
@@ -32,16 +25,15 @@ import com.holub.life.Storable;
  *
  * @include /etc/license.txt
  */
+public final class Neighborhood implements Cell {
 
-public final class Neighborhood implements Cell
-{
 	/** Block if reading is not permitted because the grid is
 	 *  transitioning to the next state. Only one lock is
 	 *  used (for the outermost neighborhood) since all updates
 	 *  must be requested through the outermost neighborhood.
 	 */
-	private static final ConditionVariable readingPermitted =
-											new ConditionVariable(true);
+
+	private static final ConditionVariable readingPermitted = new ConditionVariable(true);
 
 	/** Returns true only if none of the cells in the Neighborhood
 	 *  changed state during the last transition.
@@ -437,13 +429,15 @@ public final class Neighborhood implements Cell
 		amActive = false;
 	}
 
+
+
 	/** Cause subcells to add an annotation to the indicated
 	 *  memento if they happen to be alive.
 	 */
-
-	public boolean transfer(Storable memento, Point corner,
-														boolean load)
-	{ 	int   subcellWidth	= grid[0][0].widthInCells();
+	@Override
+	public boolean transfer(Storable memento, Point corner, boolean load)
+	{
+		int   subcellWidth	= grid[0][0].widthInCells();
 		int   myWidth		= widthInCells();
 		Point upperLeft	= new Point( corner );
 
