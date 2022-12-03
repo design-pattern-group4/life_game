@@ -18,8 +18,9 @@ public final class Resident implements Cell
 	private static final Color BORDER_COLOR  = Colors.DARK_YELLOW;
 	private static final Color LIVE_COLOR 	= Color.RED;
 	private static final Color DEAD_COLOR   = Colors.LIGHT_YELLOW;
-
+	private static final Color SELECTED_COLOR = Colors.LIGHT_GREEN;
 	private boolean amAlive 	= false;
+	private boolean amSelected = false;
 	private boolean willBeAlive	= false;
 
 	private boolean isStable(){return amAlive == willBeAlive; }
@@ -80,22 +81,26 @@ public final class Resident implements Cell
 	}
 
 	public void redraw(Graphics g, Rectangle here, boolean drawAll)
-    {   g = g.create();
+    {
+		// 활성화 되어잇으면 빨간색으로 채움
+		g = g.create();
 		g.setColor(amAlive ? LIVE_COLOR : DEAD_COLOR );
-		g.fillRect(here.x+1, here.y+1, here.width-1, here.height-1);
+		g.fillRect(here.x+2, here.y+2, here.width-2, here.height-2);
 
 		// Doesn't draw a line on the far right and bottom of the
 		// grid, but that's life, so to speak. It's not worth the
 		// code for the special case.
 
-		g.setColor( BORDER_COLOR );
-		g.drawLine( here.x, here.y, here.x, here.y + here.height );
-		g.drawLine( here.x, here.y, here.x + here.width, here.y  );
+		// 선택되있으면 초록색으로 테두리 그림
+		g.setColor(amSelected ? SELECTED_COLOR : BORDER_COLOR);
+		g.drawRect(here.x+1, here.y+1, here.width-1, here.height-1);
+
 		g.dispose();
 	}
 
 	public void userClicked(Point here, Rectangle surface)
 	{	amAlive = !amAlive;
+		amSelected = !amSelected;
 	}
 
 	public void	   clear()			{amAlive = willBeAlive = false; }
