@@ -354,6 +354,7 @@ public final class Neighborhood implements Cell {
 
 			readingPermitted.waitForTrue();
 
+			System.out.println("=========== 그리기 =============");
 			for( int row = 0; row < gridSize; ++row )
 			{   for( int column = 0; column < gridSize; ++column )
 				{   grid[row][column].redraw( g, subcell, drawAll );	// {=Neighborhood.redraw3}
@@ -362,10 +363,12 @@ public final class Neighborhood implements Cell {
 				subcell.translate(-compoundWidth, subcell.height);
 			}
 
+			// 블럭 테두리 그리기
 			g = g.create();
 			g.setColor( Colors.LIGHT_ORANGE );
 			g.drawRect( here.x, here.y, here.width, here.height );
 
+			// 활성화된 칸 있으면 테두리 그리는 것
 			if( amActive )
 			{	g.setColor( Color.BLUE );
 				g.drawRect(	here.x+1,	  here.y+1,
