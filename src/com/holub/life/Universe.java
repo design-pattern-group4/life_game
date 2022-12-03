@@ -98,6 +98,15 @@ public class Universe extends JPanel
 			}
 		);
 
+		setFocusable(true);
+		requestFocusInWindow();
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				System.out.println(e.getKeyChar());
+			}
+		});
+
 		MenuSite.addLine( this, "Grid", "Clear",
 			new ActionListener()
 			{	public void actionPerformed(ActionEvent e)
