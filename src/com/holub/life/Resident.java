@@ -18,7 +18,7 @@ public final class Resident implements Cell
 	private static final Color BORDER_COLOR  = Colors.DARK_YELLOW;
 	private static final Color LIVE_COLOR 	= Color.RED;
 	private static final Color DEAD_COLOR   = Colors.LIGHT_YELLOW;
-	private static final Color SELECTED_COLOR = Colors.LIGHT_GREEN;
+	private static final Color SELECTED_COLOR = Colors.PURPLE;
 	private boolean amAlive 	= false;
 	private boolean amSelected = false;
 	private boolean willBeAlive	= false;
@@ -100,6 +100,10 @@ public final class Resident implements Cell
 
 	public void userClicked(Point here, Rectangle surface)
 	{	amAlive = !amAlive;
+	}
+
+	public void userSelected(Point here, Rectangle surface) {
+		System.out.println("resident selected " + here.x + " " + here.y);
 		amSelected = !amSelected;
 	}
 

@@ -56,6 +56,7 @@ public interface Cell
 	 */
 
 	void userClicked(Point here, Rectangle surface);
+	void userSelected(Point here, Rectangle surface);
 
 	/** Return true if this cell or any subcells are alive.
 	 */
@@ -146,6 +147,12 @@ public interface Cell
 		public boolean	 transition()		{return false;			  }
 
 		public void	userClicked(Point h, Rectangle s				){}
+
+		@Override
+		public void userSelected(Point here, Rectangle surface) {
+			
+		}
+
 		public void redraw 		(Graphics g, Rectangle here,
 												 boolean drawAll	){}
 
