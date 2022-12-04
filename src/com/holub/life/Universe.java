@@ -9,6 +9,8 @@ import java.awt.event.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * The Universe is a mediator that sits between the Swing
@@ -31,7 +33,7 @@ public class Universe extends JPanel
 	 *  to do. If it's too small, you have too many blocks to check.
 	 *  I've found that 8 is a good compromise.
 	 */
-	private static final int  DEFAULT_GRID_SIZE = 4;
+	private static final int  DEFAULT_GRID_SIZE = 8;
 
 	/** The size of the smallest "atomic" cell---a Resident object.
 	 *  This size is extrinsic to a Resident (It's passed into the
@@ -42,10 +44,11 @@ public class Universe extends JPanel
 	// The constructor is private so that the universe can be created
 	// only by an outer-class method [Neighborhood.createUniverse()].
 
-	private static int pointerX = 0;
-	private static int pointerY = 0;
-	private static Point before;
+//	private static int pointerX = 0;
+//	private static int pointerY = 0;
+	private static Point before, cur;
 	private static boolean isFirst = true;
+	private static List<KeyBoardBehavior> keyBoardStrategies = Arrays.asList(new MoveUpBehavior(), new MoveLeftBehavior(), new MoveDownBehavior(), new MoveRightBehavior(), new SelectBehavior());
 
 	private Universe()
 	{	// Create the nested Cells that comprise the "universe." A bug
@@ -60,7 +63,7 @@ public class Universe extends JPanel
 								new Resident()
 							)
 						);
-
+		cur = new Point(0, 0);
 		final Dimension PREFERRED_SIZE =
 						new Dimension
 						(  outermostCell.widthInCells() * DEFAULT_CELL_SIZE,
@@ -115,23 +118,13 @@ public class Universe extends JPanel
 				bounds.x = 0;
 				bounds.y = 0;
 				int pixelsPerCell = (bounds.width / DEFAULT_GRID_SIZE) / DEFAULT_GRID_SIZE;
-				before = new Point(pointerX, pointerY);
-				if (e.getKeyChar() == 'a' && pointerX > 0) {
-					pointerX -= pixelsPerCell;
-				} else if (e.getKeyChar() == 'w' && pointerY > 0) {
-					pointerY -= pixelsPerCell;
-				} else if (e.getKeyChar() == 's' && pointerY + pixelsPerCell < bounds.height) {
-					pointerY += pixelsPerCell;
-				} else if (e.getKeyChar() == 'd' && pointerX + pixelsPerCell < bounds.width) {
-					pointerX += pixelsPerCell;
-				} else if (e.getKeyChar() == 'k') {
-					outermostCell.userClicked(new Point(pointerX, pointerY), bounds);
+				before = new Point(cur.x, cur.y);
+
+				KeyBoardBehavior keyStrategy = getKeyBoardStrategy(e.getKeyChar());
+				if(keyStrategy != null){
+					keyStrategy.action(outermostCell, cur, before, bounds, pixelsPerCell, isFirst);
 				}
 
-				outermostCell.userSelected(new Point(pointerX, pointerY), bounds);
-				if (before != null && !isFirst) {
-					outermostCell.userSelected(before, bounds);
-				}
 				isFirst = false;
 				repaint();
 			}
@@ -196,6 +189,13 @@ public class Universe extends JPanel
 				}
 			}
 		);
+	}
+
+	public static KeyBoardBehavior getKeyBoardStrategy(char pressedKey) {
+		return keyBoardStrategies.stream()
+				.filter(strategy -> strategy.isPressed(pressedKey))
+				.findAny()
+				.orElseThrow(()-> new IllegalArgumentException("정의되지 않은 입력"));
 	}
 
 	/** Singleton Accessor. The Universe object itself is manufactured
