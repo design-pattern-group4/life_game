@@ -44,6 +44,8 @@ public class Universe extends JPanel
 
 	private static int pointerX = 0;
 	private static int pointerY = 0;
+	private static Point before;
+	private static boolean isFirst = true;
 
 	private Universe()
 	{	// Create the nested Cells that comprise the "universe." A bug
@@ -113,7 +115,7 @@ public class Universe extends JPanel
 				bounds.x = 0;
 				bounds.y = 0;
 				int pixelsPerCell = (bounds.width / DEFAULT_GRID_SIZE) / DEFAULT_GRID_SIZE;
-
+				before = new Point(pointerX, pointerY);
 				if (e.getKeyChar() == 'a' && pointerX > 0) {
 					pointerX -= pixelsPerCell;
 				} else if (e.getKeyChar() == 'w' && pointerY > 0) {
@@ -122,9 +124,15 @@ public class Universe extends JPanel
 					pointerY += pixelsPerCell;
 				} else if (e.getKeyChar() == 'd' && pointerX + pixelsPerCell < bounds.width) {
 					pointerX += pixelsPerCell;
+				} else if (e.getKeyChar() == 'k') {
+					outermostCell.userClicked(new Point(pointerX, pointerY), bounds);
 				}
 
 				outermostCell.userSelected(new Point(pointerX, pointerY), bounds);
+				if (before != null && !isFirst) {
+					outermostCell.userSelected(before, bounds);
+				}
+				isFirst = false;
 				repaint();
 			}
 		});
