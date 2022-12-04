@@ -31,7 +31,7 @@ public class Universe extends JPanel
 	 *  to do. If it's too small, you have too many blocks to check.
 	 *  I've found that 8 is a good compromise.
 	 */
-	private static final int  DEFAULT_GRID_SIZE = 8;
+	private static final int  DEFAULT_GRID_SIZE = 4;
 
 	/** The size of the smallest "atomic" cell---a Resident object.
 	 *  This size is extrinsic to a Resident (It's passed into the
@@ -41,6 +41,9 @@ public class Universe extends JPanel
 
 	// The constructor is private so that the universe can be created
 	// only by an outer-class method [Neighborhood.createUniverse()].
+
+	private static int pointerX = 0;
+	private static int pointerY = 0;
 
 	private Universe()
 	{	// Create the nested Cells that comprise the "universe." A bug
@@ -92,6 +95,7 @@ public class Universe extends JPanel
 				{	Rectangle bounds = getBounds();
 					bounds.x = 0;
 					bounds.y = 0;
+					System.out.println(e.getPoint().x + " " + e.getPoint().y + " pressed");
 					outermostCell.userClicked(e.getPoint(),bounds);
 					repaint();
 				}
@@ -104,6 +108,24 @@ public class Universe extends JPanel
 			@Override
 			public void keyPressed(KeyEvent e) {
 				System.out.println(e.getKeyChar());
+
+				Rectangle bounds = getBounds();
+				bounds.x = 0;
+				bounds.y = 0;
+				int pixelsPerCell = (bounds.width / DEFAULT_GRID_SIZE) / DEFAULT_GRID_SIZE;
+
+				if (e.getKeyChar() == 'a' && pointerX > 0) {
+					pointerX -= pixelsPerCell;
+				} else if (e.getKeyChar() == 'w' && pointerY > 0) {
+					pointerY -= pixelsPerCell;
+				} else if (e.getKeyChar() == 's' && pointerY + pixelsPerCell < bounds.height) {
+					pointerY += pixelsPerCell;
+				} else if (e.getKeyChar() == 'd' && pointerX + pixelsPerCell < bounds.width) {
+					pointerX += pixelsPerCell;
+				}
+
+				outermostCell.userSelected(new Point(pointerX, pointerY), bounds);
+				repaint();
 			}
 		});
 

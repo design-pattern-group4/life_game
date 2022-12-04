@@ -40,6 +40,7 @@ public final class Neighborhood implements Cell {
 	 */
 
 	private boolean amActive = false;
+	private boolean amSelected = false;
 
 	/** The actual grid of Cells contained within this neighborhood. */
 	private final Cell[][] grid;
@@ -334,9 +335,10 @@ public final class Neighborhood implements Cell {
 		// recursively to sublocks, only those blocks that actually
 		// need to update will actually do so.
 
-			
-		if( !amActive && !oneLastRefreshRequired && !drawAll )
+
+		if (!amActive && !amSelected && !oneLastRefreshRequired && !drawAll) {
 			return;
+		}
 		try
 		{
 			oneLastRefreshRequired = false;
@@ -354,10 +356,11 @@ public final class Neighborhood implements Cell {
 
 			readingPermitted.waitForTrue();
 
-			System.out.println("=========== 그리기 =============");
+			//System.out.println("==========="+here.x+" "+here.y+" 그리기 =============");
 			for( int row = 0; row < gridSize; ++row )
 			{   for( int column = 0; column < gridSize; ++column )
-				{   grid[row][column].redraw( g, subcell, drawAll );	// {=Neighborhood.redraw3}
+				{
+					grid[row][column].redraw( g, subcell, drawAll );	// {=Neighborhood.redraw3}
 				    subcell.translate( subcell.width, 0);
 				}
 				subcell.translate(-compoundWidth, subcell.height);
@@ -408,10 +411,28 @@ public final class Neighborhood implements Cell {
 		Point position = new Point( columnOffset, rowOffset );
 		Rectangle subcell = new Rectangle(	0, 0, pixelsPerCell,
 												  pixelsPerCell );
-
+		System.out.println(row + " " + column + " " + rowOffset + " " + columnOffset);
 		grid[row][column].userClicked(position, subcell); //{=Neighborhood.userClicked.call}
 		amActive = true;
 		rememberThatCellAtEdgeChangedState(row, column);
+	}
+
+	@Override
+	public void userSelected(Point here, Rectangle surface) {
+		System.out.println("neighborhood selected " + here.x + " " + here.y);
+		int pixelsPerCell = surface.width / gridSize ;
+		int row				= here.y     	/ pixelsPerCell ;
+		int column			= here.x     	/ pixelsPerCell ;
+		int rowOffset		= here.y     	% pixelsPerCell ;
+		int columnOffset	= here.x     	% pixelsPerCell ;
+
+		Point position = new Point( columnOffset, rowOffset );
+		Rectangle subcell = new Rectangle(	0, 0, pixelsPerCell,
+				pixelsPerCell );
+
+		grid[row][column].userSelected(position, subcell); //{=Neighborhood.userSelected.call}
+		amSelected = true;
+
 	}
 
 	public boolean isAlive()
