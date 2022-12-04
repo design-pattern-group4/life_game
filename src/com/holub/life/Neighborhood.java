@@ -27,10 +27,10 @@ import java.util.LinkedList;
  */
 public final class Neighborhood implements Cell {
 
-	/** Block if reading is not permitted because the grid is
-	 *  transitioning to the next state. Only one lock is
-	 *  used (for the outermost neighborhood) since all updates
-	 *  must be requested through the outermost neighborhood.
+	/** Block if reading is not permitted
+	 *  because the grid is transitioning to the next state.
+	 *  Only one lock is used (for the outermost neighborhood)
+	 *  since all updates must be requested through the outermost neighborhood.
 	 */
 
 	private static final ConditionVariable readingPermitted = new ConditionVariable(true);

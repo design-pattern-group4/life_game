@@ -34,12 +34,15 @@ public class Universe extends JPanel
 	 *  to do. If it's too small, you have too many blocks to check.
 	 *  I've found that 8 is a good compromise.
 	 */
+	// gride 사이즈 결정하는 곳
+	// -> 적당한 gride size가 8이라는 것을 발견 했다고함. 너무 작으면 누를 블럭이 많아지나봐
 	private static final int  DEFAULT_GRID_SIZE = 8;
 
 	/** The size of the smallest "atomic" cell---a Resident object.
 	 *  This size is extrinsic to a Resident (It's passed into the
 	 *  Resident's "draw yourself" method.
 	 */
+	// cell size 걱정하는 곳
 	private static final int  DEFAULT_CELL_SIZE = 8;
 
 	// The constructor is private so that the universe can be created
@@ -50,6 +53,9 @@ public class Universe extends JPanel
 	private static Point before, cur;
 	private static boolean isFirst = true;
 	private static List<KeyBoardBehavior> keyBoardStrategies = Arrays.asList(new MoveUpBehavior(), new MoveLeftBehavior(), new MoveDownBehavior(), new MoveRightBehavior(), new SelectBehavior());
+
+
+
 
 	private Universe()
 	{	// Create the nested Cells that comprise the "universe." A bug
