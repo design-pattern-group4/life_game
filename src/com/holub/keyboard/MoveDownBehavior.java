@@ -7,7 +7,7 @@ import java.awt.*;
 public class MoveDownBehavior implements KeyBoardBehavior {
     @Override
     public boolean isPressed(char pressedKey) {
-        return pressedKey == 's';
+        return pressedKey == 's' || pressedKey == 'S' || pressedKey == 'ㄴ';
     }
 
     @Override

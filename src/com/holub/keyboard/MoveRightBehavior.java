@@ -7,7 +7,7 @@ import java.awt.*;
 public class MoveRightBehavior implements KeyBoardBehavior {
     @Override
     public boolean isPressed(char pressedKey) {
-        return pressedKey == 'd';
+        return pressedKey == 'd' || pressedKey == 'ㅇ' || pressedKey == 'D';
     }
 
     @Override

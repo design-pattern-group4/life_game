@@ -8,7 +8,7 @@ import java.awt.*;
 public class SelectBehavior implements KeyBoardBehavior {
     @Override
     public boolean isPressed(char pressedKey) {
-        return pressedKey == 'k';
+        return pressedKey == 'k' || pressedKey == 'ㅏ' || pressedKey == 'K';
     }
 
     @Override

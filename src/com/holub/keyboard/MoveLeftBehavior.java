@@ -7,7 +7,7 @@ import java.awt.*;
 public class MoveLeftBehavior implements KeyBoardBehavior {
     @Override
     public boolean isPressed(char pressedKey) {
-        return pressedKey == 'a';
+        return pressedKey == 'a' || pressedKey == 'A' || pressedKey == 'ㅁ';
     }
 
     @Override
