@@ -1,6 +1,7 @@
 package com.holub.life;
 
 import com.holub.io.Files;
+import com.holub.keyboard.*;
 import com.holub.ui.MenuSite;
 
 import javax.swing.*;

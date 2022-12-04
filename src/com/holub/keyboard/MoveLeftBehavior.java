@@ -1,19 +1,21 @@
-package com.holub.life;
+package com.holub.keyboard;
+
+import com.holub.life.Cell;
 
 import java.awt.*;
 
-public class MoveRightBehavior implements KeyBoardBehavior {
+public class MoveLeftBehavior implements KeyBoardBehavior {
     @Override
     public boolean isPressed(char pressedKey) {
-        return pressedKey == 'd';
+        return pressedKey == 'a';
     }
 
     @Override
     public Point action(Cell outermostCell, Point cur, Point before, Rectangle bounds, int pixelsPerCell, boolean isFirst) {
-        if (cur.x + pixelsPerCell < bounds.width) {
-            cur.x += pixelsPerCell;
+        if (cur.x > 0) {
+            cur.x -= pixelsPerCell;
         }
-        outermostCell.userSelected(new Point(cur.x, cur.y), bounds);
+        outermostCell.userSelected(cur, bounds);
         if (before != null && !isFirst) {
             outermostCell.userSelected(before, bounds);
         }

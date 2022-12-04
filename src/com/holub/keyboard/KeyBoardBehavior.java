@@ -1,4 +1,6 @@
-package com.holub.life;
+package com.holub.keyboard;
+
+import com.holub.life.Cell;
 
 import java.awt.*;
 
