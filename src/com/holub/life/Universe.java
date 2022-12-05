@@ -65,6 +65,7 @@ public class Universe extends JPanel
 		// on the screen.
 
 
+
 		outermostCell = new Neighborhood
 						(	gcsize.getGridSize(),
 							new Neighborhood
@@ -127,6 +128,8 @@ public class Universe extends JPanel
 				bounds.x = 0;
 				bounds.y = 0;
 				int pixelsPerCell = (bounds.width / gcsize.getGridSize()) / gcsize.getGridSize();
+				System.out.println(pixelsPerCell);
+
 				before = new Point(cur.x, cur.y);
 
 				KeyBoardBehavior keyStrategy = getKeyBoardStrategy(e.getKeyChar());
@@ -178,6 +181,29 @@ public class Universe extends JPanel
 
 
 
+		MenuSite.addLine
+				(	this, "Canvas", "Small",
+						new ActionListener()
+						{	public void actionPerformed(ActionEvent e)
+						{	outermostCell.clear();
+							gcsize.changeGridSize(2);
+							outermostCell.changeMap(2);
+
+							repaint();
+
+						}
+						}
+				);
+
+
+
+
+
+
+
+
+
+
 
 		MenuSite.addLine( this, "Example", "Test",
 				new ActionListener()
@@ -187,6 +213,10 @@ public class Universe extends JPanel
 					}
 				}
 		);
+
+
+
+
 
 		Clock.instance().addClockListener //{=Universe.clock.subscribe}
 		(	new Clock.Listener()

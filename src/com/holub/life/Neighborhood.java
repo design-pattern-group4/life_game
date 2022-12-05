@@ -47,8 +47,14 @@ public final class Neighborhood implements Cell {
 
 	/** The neighborhood is square, so gridSize is both the horizontal
 	 *  and vertical size.
+	 *  cell 자체가 네모임 . 그래서, gridsize는.. 수평 수직 사이즈다.?
+	 *
+	 *
 	 */
-	private final int 	   gridSize;
+	private int 	   gridSize;
+
+
+
 
 	/** Create a new Neigborhood containing gridSize-by-gridSize
 	 *  clones of the prototype. The Protype is deliberately
@@ -63,6 +69,17 @@ public final class Neighborhood implements Cell {
 		for( int row = 0; row < gridSize; ++row )
 			for( int column = 0; column < gridSize; ++column )
 				grid[row][column] = prototype.create();
+	}
+
+	private void setGridSize(int gridSize){
+		this.gridSize = gridSize;
+
+	}
+
+
+	public void changeMap(int size){
+		setGridSize(size);
+
 	}
 
 	/** The "clone" method used to create copies of the current
@@ -444,7 +461,7 @@ public final class Neighborhood implements Cell {
 	{	return gridSize * grid[0][0].widthInCells();
 	}
 
-	// cell 싹 다 dead 상태로 만든다고 함.?????
+	// cell 싹 다 dead 상태로 만든다고 함.????? 다 지워!!!
 	public void clear()
 	{	activeEdges.clear();
 

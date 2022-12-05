@@ -104,6 +104,8 @@ public interface Cell // cell interface고 이거 구현하는게 neighborhood
 		boolean isAlive	(Point location);
 	}
 
+	void changeMap(int size);
+
 	/**  This method is used internally to save or restore the state
 	 *   of a cell from a memento.
 	 *   @return true if this cell was modified by the transfer.
@@ -144,6 +146,12 @@ public interface Cell // cell interface고 이거 구현하는게 neighborhood
 		public Cell 	 create()	   	   	{return this;			  }
 		public Direction isDisruptiveTo()	{return Direction.NONE;	  }
 		public void 	 clear()		   	{						  }
+
+		@Override
+		public void changeMap(int size) {
+
+		}
+
 		public int 		 widthInCells()  	{return 0;				  }
 		public boolean	 transition()		{return false;			  }
 

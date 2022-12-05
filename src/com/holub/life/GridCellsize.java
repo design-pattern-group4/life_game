@@ -41,11 +41,10 @@ public class GridCellsize {
     }
 
 
-//    public static changeGridSize(int gird_size, int cell_size){
-//
-//
-//
-//    }
+
+    public void changeGridSize(int gird_size){
+        setGridSize(gird_size);
+    }
 
 
 }

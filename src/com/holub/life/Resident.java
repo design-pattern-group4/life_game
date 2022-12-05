@@ -108,6 +108,12 @@ public final class Resident implements Cell
 	}
 
 	public void	   clear()			{amAlive = willBeAlive = false; }
+
+	@Override
+	public void changeMap(int size) {
+
+	}
+
 	public boolean isAlive()		{return amAlive;			    }
 	public Cell    create()			{return new Resident();			}
 	public int 	   widthInCells()	{return 1;}
