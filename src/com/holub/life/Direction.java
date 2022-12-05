@@ -5,10 +5,13 @@ package com.holub.life;
  *  particular Cell is unstable. If a subcell has just changed
  *  on the north side, for example, then you indicate the
  *  change by issuing:
+ *  방향 클래스는 특정 셀이 불안정한 방식을 나타내는 데 사용됩니다. 예를 들어, 하위 셀이 북쪽에서 방금 변경된 경우 다음을 실행하여 변경 사항을 표시합니다.
  *	<PRE>
  * 	Direction isDisruptive = new Direction();
  * 	isDisruptive.add( Direction.NORTH );
  *  </PRE>
+ *  나중에 업데이트할 때 셀이 있는지 확인할 수 있습니다.
+ *  다음을 실행하여 특정 에지에서 중단을 유발합니다.
  *  Later on, when updating, you can check whether a cell
  *  is disruptive on a particular edge by issuing:
  *  <Pre>

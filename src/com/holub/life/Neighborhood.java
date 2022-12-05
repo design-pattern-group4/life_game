@@ -90,6 +90,7 @@ public final class Neighborhood implements Cell {
 	 *  cells may need to be updated, even if they were previously
 	 *  stable.
 	 */
+	//
 	public  Direction isDisruptiveTo(){ return activeEdges; }
 	private	Direction activeEdges = new Direction( Direction.NONE );
 
@@ -443,6 +444,7 @@ public final class Neighborhood implements Cell {
 	{	return gridSize * grid[0][0].widthInCells();
 	}
 
+	// cell 싹 다 dead 상태로 만든다고 함.?????
 	public void clear()
 	{	activeEdges.clear();
 

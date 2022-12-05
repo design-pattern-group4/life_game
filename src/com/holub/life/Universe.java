@@ -34,19 +34,20 @@ public class Universe extends JPanel
 	 *  to do. If it's too small, you have too many blocks to check.
 	 *  I've found that 8 is a good compromise.
 	 */
+	// Universe로 갔음 초기 화하는 부분
+
 	// gride 사이즈 결정하는 곳
 	// -> 적당한 gride size가 8이라는 것을 발견 했다고함. 너무 작으면 누를 블럭이 많아지나봐
 	private static final int  DEFAULT_GRID_SIZE = 8;
 
-	/** The size of the smallest "atomic" cell---a Resident object.
-	 *  This size is extrinsic to a Resident (It's passed into the
-	 *  Resident's "draw yourself" method.
-	 */
+
 	// cell size 걱정하는 곳
 	private static final int  DEFAULT_CELL_SIZE = 8;
 
 	// The constructor is private so that the universe can be created
 	// only by an outer-class method [Neighborhood.createUniverse()].
+
+	GridCellsize gcsize  = GridCellsize.getInstance(DEFAULT_GRID_SIZE,DEFAULT_CELL_SIZE);
 
 //	private static int pointerX = 0;
 //	private static int pointerY = 0;
@@ -65,17 +66,17 @@ public class Universe extends JPanel
 
 
 		outermostCell = new Neighborhood
-						(	DEFAULT_GRID_SIZE,
+						(	gcsize.getGridSize(),
 							new Neighborhood
-							(	DEFAULT_GRID_SIZE,
+							(	gcsize.getGridSize(),
 								new Resident()
 							)
 						);
 		cur = new Point(0, 0);
 		final Dimension PREFERRED_SIZE =
 						new Dimension
-						(  outermostCell.widthInCells() * DEFAULT_CELL_SIZE,
-						   outermostCell.widthInCells() * DEFAULT_CELL_SIZE
+						(  outermostCell.widthInCells() * gcsize.getCellSize(),
+						   outermostCell.widthInCells() * gcsize.getCellSize()
 						);
 
 		addComponentListener
@@ -125,7 +126,7 @@ public class Universe extends JPanel
 				Rectangle bounds = getBounds();
 				bounds.x = 0;
 				bounds.y = 0;
-				int pixelsPerCell = (bounds.width / DEFAULT_GRID_SIZE) / DEFAULT_GRID_SIZE;
+				int pixelsPerCell = (bounds.width / gcsize.getGridSize()) / gcsize.getGridSize();
 				before = new Point(cur.x, cur.y);
 
 				KeyBoardBehavior keyStrategy = getKeyBoardStrategy(e.getKeyChar());
@@ -138,10 +139,11 @@ public class Universe extends JPanel
 			}
 		});
 
+
 		MenuSite.addLine( this, "Grid", "Clear",
 			new ActionListener()
 			{	public void actionPerformed(ActionEvent e)
-				{	outermostCell.clear();
+				{	outermostCell.clear(); // -> 따라 들어가보니깐, outermostCell 은 Cell이고 이거 구현하는게 Neighborhood 거기서 그리드 전체 clear하고 있음
 					repaint();
 				}
 			}
@@ -173,6 +175,9 @@ public class Universe extends JPanel
 		        }
 			}
 		);
+
+
+
 
 		MenuSite.addLine( this, "Example", "Test",
 				new ActionListener()

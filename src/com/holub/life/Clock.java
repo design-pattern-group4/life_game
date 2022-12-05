@@ -1,12 +1,13 @@
 package com.holub.life;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.util.*;
-import java.util.Timer;		// overrides java.awt.timer
-import com.holub.ui.MenuSite;
 import com.holub.tools.Publisher;
+import com.holub.ui.MenuSite;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /***
  * The <code>Clock</code> class handles the timing of gameboard
@@ -26,6 +27,13 @@ import com.holub.tools.Publisher;
  * @include /etc/license.txt
  */
 
+/**
+ * Clock uses Observer to fire periodic clock-tick events at interested parties (in this case, the Universe via an anonymous inner class)
+ * Clock은 옵저버를 사용한다. 즉, 이벤트를 처리하는 옵저버들에게 주기적으로 Clock-tick 이벤트를 알린다(fire)
+ * 이 경우, Universe가 Action Listener interface를 구현한 anonymous inner class 를 통하여 이벤트를 받는다.
+ * ===================
+ * cf) 메뉴에도 옵저버 사용함
+ */
 public class Clock
 {	private Timer			clock		= new Timer();
 	private TimerTask		tick		= null;
@@ -44,6 +52,8 @@ public class Clock
 	 *  <code>Clock.instance()</code>. It's illegal to call
 	 *  <code>new Clock()</code>.
 	 */
+
+	//=> Clock 싱글톤 부르는 코드!!!!
 	public synchronized static Clock instance()
 	{	if( instance == null )
 			instance = new Clock();
@@ -92,6 +102,7 @@ public class Clock
 					String name = ((JMenuItem)e.getSource()).getName();
 					char toDo = name.charAt(0);
 
+					// Tick 속도 조절인가???????????
 					if( toDo=='T' )
 						tick();				      // single tick
 					else
@@ -137,6 +148,9 @@ public class Clock
 	/** Force the clock to "tick," even if it's not time for
 	 *  a tick. Useful for forcing a tick when the clock is
 	 *  stopped. (Life uses this for single stepping.)
+	 *
+	 *  똑딱거릴 시간이 아니더라도 시계를 억지로 "똑딱"하게 하세요. 시계가 정지되었을 때 체크 표시를 강제로 하는 데 유용합니다. (라이프는 이것을 싱글 스테핑에 사용합니다.)?????  *
+	 * 이거 무슨말???????
 	 */
 	public void tick()
 	{	publisher.publish
@@ -169,6 +183,17 @@ public class Clock
 	 *  MenuSite users, it makes an "end run" around the facade.
 	 */
 
+
+	/**
+	 *
+	 * 메뉴바에서 아이템이 선택 되었는지 아닌지 확인
+	 * 이것은 놀라울 정도로 조잡하게 만들어진 인터 페이스다?
+	 * 문제는 스윙이 메뉴를 그린다는 것이고 메인 프레임인 캔버스 위에,
+	 * 결과적으로 표시되는 메뉴는 실행중인 게임에 의해 덮어 씌어진다.
+	 * 게다가, 스윙은 알려주지 않는다. 어떤 메뉴의 아이템이 선택되었는지에 대한 알림을
+	 * 따라서, 유일한 방법은 어떤 메뉴가 표시가 되면 true를 리턴하는 것이다.
+	 *  {@link #tick} 메소드는 이 때, 효과적으로 clock tick을 정지한다. 메뉴가 표시되는한......
+	 * */
 	private boolean menuIsActive()
 	{	MenuElement[] path =
 					MenuSelectionManager.defaultManager().getSelectedPath();

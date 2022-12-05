@@ -9,7 +9,7 @@ import java.awt.*;
  * @include /etc/license.txt
  */
 
-public interface Cell
+public interface Cell // cell interface고 이거 구현하는게 neighborhood
 {
 	/** Figure out the next state of the cell, given the specified
 	 *  neighbors.
@@ -82,6 +82,7 @@ public interface Cell
 	/** Set the cell and all subcells into a "dead" state.
 	 */
 
+	// cell 전부 다 dead 상태로 만드네.........
 	void clear();
 
 	/**
