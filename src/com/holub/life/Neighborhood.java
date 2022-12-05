@@ -73,9 +73,9 @@ public final class Neighborhood implements Cell {
 
 	private void setGridSize(int gridSize){
 		this.gridSize = gridSize;
+		System.out.println(">>>>>"+gridSize);
 
 	}
-
 
 	public void changeMap(int size){
 		setGridSize(size);
@@ -375,6 +375,7 @@ public final class Neighborhood implements Cell {
 			readingPermitted.waitForTrue();
 
 			//System.out.println("==========="+here.x+" "+here.y+" 그리기 =============");
+			System.out.println("gridSize redraw : "+gridSize);
 			for( int row = 0; row < gridSize; ++row )
 			{   for( int column = 0; column < gridSize; ++column )
 				{

@@ -148,9 +148,7 @@ public interface Cell // cell interface고 이거 구현하는게 neighborhood
 		public void 	 clear()		   	{						  }
 
 		@Override
-		public void changeMap(int size) {
-
-		}
+		public void changeMap(int size) {}
 
 		public int 		 widthInCells()  	{return 0;				  }
 		public boolean	 transition()		{return false;			  }

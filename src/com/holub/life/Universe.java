@@ -182,10 +182,11 @@ public class Universe extends JPanel
 
 
 		MenuSite.addLine
-				(	this, "Canvas", "Small",
+				(	this, "MapSize", "2X2",
 						new ActionListener()
 						{	public void actionPerformed(ActionEvent e)
 						{	outermostCell.clear();
+							//gcsize.changeGridCellSize(2,8);
 							gcsize.changeGridSize(2);
 							outermostCell.changeMap(2);
 
@@ -194,6 +195,40 @@ public class Universe extends JPanel
 						}
 						}
 				);
+
+		MenuSite.addLine
+				(	this, "MapSize", "4X4",
+						new ActionListener()
+						{	public void actionPerformed(ActionEvent e)
+						{	outermostCell.clear();
+							//gcsize.changeGridCellSize(4,8);
+							gcsize.changeGridSize(4);
+							System.out.println("instance >> "+gcsize.getGridSize());
+							outermostCell.changeMap(4);
+
+							repaint();
+
+						}
+						}
+				);
+
+		MenuSite.addLine
+				(	this, "MapSize", "8X8",
+						new ActionListener()
+						{	public void actionPerformed(ActionEvent e)
+						{	outermostCell.clear();
+							//gcsize.changeGridCellSize(4,8);
+							gcsize.changeGridSize(8);
+							System.out.println("instance >> "+gcsize.getGridSize());
+							outermostCell.changeMap(8);
+
+							repaint();
+
+						}
+						}
+				);
+
+
 
 
 

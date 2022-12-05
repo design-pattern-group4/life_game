@@ -41,9 +41,16 @@ public class GridCellsize {
     }
 
 
+    public static GridCellsize changeGridCellSize(int grid_size, int cell_size){
+        if(uniqueInstance != null){
+            uniqueInstance = null;
+        }
+        return getInstance(grid_size,cell_size);
+    }
 
-    public void changeGridSize(int gird_size){
-        setGridSize(gird_size);
+    public void changeGridSize(int grid_size){
+        setGridSize(grid_size);
+
     }
 
 
