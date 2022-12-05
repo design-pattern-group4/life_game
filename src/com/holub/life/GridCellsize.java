@@ -40,14 +40,14 @@ public class GridCellsize {
 
     }
 
-
-    public static GridCellsize changeGridCellSize(int grid_size, int cell_size){
-        if(uniqueInstance != null){
-            uniqueInstance = null;
-        }
-        return getInstance(grid_size,cell_size);
-    }
-
+//  => 변경할때마다 instance 새로 초기화 하는 방식.. 근데 그럴 필요 없는 것 같음. 방법 1
+//    public static GridCellsize changeGridCellSize(int grid_size, int cell_size){
+//        if(uniqueInstance != null){
+//            uniqueInstance = null;
+//        }
+//        return getInstance(grid_size,cell_size);
+//    }
+// 맨 처음 만들어진 instance에 값 변경
     public void changeGridSize(int grid_size){
         setGridSize(grid_size);
 

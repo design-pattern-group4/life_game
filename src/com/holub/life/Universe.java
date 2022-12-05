@@ -34,20 +34,30 @@ public class Universe extends JPanel
 	 *  to do. If it's too small, you have too many blocks to check.
 	 *  I've found that 8 is a good compromise.
 	 */
-	// Universe로 갔음 초기 화하는 부분
 
+	// Universe로 갔음 초기 화하는 부분
 	// gride 사이즈 결정하는 곳
 	// -> 적당한 gride size가 8이라는 것을 발견 했다고함. 너무 작으면 누를 블럭이 많아지나봐
 	private static final int  DEFAULT_GRID_SIZE = 8;
-
-
-	// cell size 걱정하는 곳
+	// cell size 결정하는 곳
 	private static final int  DEFAULT_CELL_SIZE = 8;
 
 	// The constructor is private so that the universe can be created
 	// only by an outer-class method [Neighborhood.createUniverse()].
 
 	GridCellsize gcsize  = GridCellsize.getInstance(DEFAULT_GRID_SIZE,DEFAULT_CELL_SIZE);
+
+	// grid size변경 cell이 grid보다 크면 안됨. 따라서, cell size는 처음 8 고정으로 유지하고 mapsize를 변경하는 걸로
+	private void changeMap(int gridsize){
+		outermostCell.clear();
+		gcsize.changeGridSize(gridsize);
+
+		outermostCell.changeMap(gcsize.getGridSize());
+		repaint();
+
+	}
+
+
 
 //	private static int pointerX = 0;
 //	private static int pointerY = 0;
@@ -65,7 +75,8 @@ public class Universe extends JPanel
 		// on the screen.
 
 
-
+		// => negiborhood gridsize가 여기서 정해짐. 즉, gridsize를 계속 바꾸면 negiborhood에 있는 값도 계속 바뀜
+		// 즉, 다른 클래스간 데이터 공유가 쉬워야함. 여러 클래스에서 접근하여 사용하기 때문에, 많은 인스턴스가 만들어지면 좋지가 않음. 한개만 존재하는게 좋음.(?) -> singleton
 		outermostCell = new Neighborhood
 						(	gcsize.getGridSize(),
 							new Neighborhood
@@ -181,17 +192,13 @@ public class Universe extends JPanel
 
 
 
+
 		MenuSite.addLine
 				(	this, "MapSize", "2X2",
 						new ActionListener()
 						{	public void actionPerformed(ActionEvent e)
-						{	outermostCell.clear();
-							//gcsize.changeGridCellSize(2,8);
-							gcsize.changeGridSize(2);
-							outermostCell.changeMap(2);
-
-							repaint();
-
+						{
+							changeMap(2);
 						}
 						}
 				);
@@ -200,14 +207,7 @@ public class Universe extends JPanel
 				(	this, "MapSize", "4X4",
 						new ActionListener()
 						{	public void actionPerformed(ActionEvent e)
-						{	outermostCell.clear();
-							//gcsize.changeGridCellSize(4,8);
-							gcsize.changeGridSize(4);
-							System.out.println("instance >> "+gcsize.getGridSize());
-							outermostCell.changeMap(4);
-
-							repaint();
-
+						{	changeMap(4);
 						}
 						}
 				);
@@ -216,14 +216,7 @@ public class Universe extends JPanel
 				(	this, "MapSize", "8X8",
 						new ActionListener()
 						{	public void actionPerformed(ActionEvent e)
-						{	outermostCell.clear();
-							//gcsize.changeGridCellSize(4,8);
-							gcsize.changeGridSize(8);
-							System.out.println("instance >> "+gcsize.getGridSize());
-							outermostCell.changeMap(8);
-
-							repaint();
-
+						{	changeMap(8);
 						}
 						}
 				);
