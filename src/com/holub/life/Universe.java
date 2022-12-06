@@ -47,7 +47,8 @@ public class Universe extends JPanel
 
 	GridCellsize gcsize  = GridCellsize.getInstance(DEFAULT_GRID_SIZE,DEFAULT_CELL_SIZE);
 
-	// grid size변경 cell이 grid보다 크면 안됨. 따라서, cell size는 처음 8 고정으로 유지하고 mapsize를 변경하는 걸로
+	// grid size변경 Function
+	//cell이 grid보다 크면 안됨. 따라서, cell size는 처음 8 고정으로 유지하고 mapsize를 변경하는 걸로
 	private void changeMap(int gridsize){
 		outermostCell.clear();
 		gcsize.changeGridSize(gridsize);
@@ -109,7 +110,9 @@ public class Universe extends JPanel
 			}
 		);
 
+		// 화면 색 설정하는 부분
 		setBackground	( Color.white	 );
+		// 레이아웃 크기 설정??????
 		setPreferredSize( PREFERRED_SIZE );
 		setMaximumSize	( PREFERRED_SIZE );
 		setMinimumSize	( PREFERRED_SIZE );
@@ -138,7 +141,7 @@ public class Universe extends JPanel
 				Rectangle bounds = getBounds();
 				bounds.x = 0;
 				bounds.y = 0;
-				int pixelsPerCell = (bounds.width / gcsize.getGridSize()) / gcsize.getGridSize();
+				int pixelsPerCell = (bounds.width / gcsize.getGridSize()) / gcsize.getGridSize() ;
 				System.out.println(pixelsPerCell);
 
 				before = new Point(cur.x, cur.y);

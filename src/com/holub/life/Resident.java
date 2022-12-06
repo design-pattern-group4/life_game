@@ -15,6 +15,7 @@ import java.awt.*;
 
 public final class Resident implements Cell
 {
+
 	private static final Color BORDER_COLOR  = Colors.DARK_YELLOW;
 	private static final Color LIVE_COLOR 	= Color.RED;
 	private static final Color DEAD_COLOR   = Colors.LIGHT_YELLOW;
