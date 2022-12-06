@@ -5,6 +5,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 import java.util.Timer;		// overrides java.awt.timer
+
+import com.holub.life.speed.ControlSpeed;
 import com.holub.ui.MenuSite;
 import com.holub.tools.Publisher;
 
@@ -29,6 +31,7 @@ import com.holub.tools.Publisher;
 public class Clock
 {	private Timer			clock		= new Timer();
 	private TimerTask		tick		= null;
+
 
 	// The clock can't be an everything-is-static singleton because
 	// it creates a menu, and it can't do that until the menus
@@ -93,21 +96,28 @@ public class Clock
 					char toDo = name.charAt(0);
 
 					if( toDo=='T' )
-						tick();				      // single tick
+						tick();
 					else
-						startTicking(   toDo=='A' ? 500:	  // agonizing
-										toDo=='S' ? 150:	  // slow
-										toDo=='M' ? 70 :	  // medium
-										toDo=='F' ? 30 : 0 ); // fast
+						startTicking(0);
+						// single tick
+					/*else {
+						System.out.println( "************22****"+toDo );
+						startTicking(toDo == 'A' ? 500 :      // agonizing
+								toDo == 'S' ? 150 :      // slow
+										toDo == 'M' ? 70 :      // medium
+												toDo == 'F' ? 30 : 0); // fast
+					}*/
 				}
 			};
 																	// {=midSetup}
 		MenuSite.addLine(this,"Go","Halt",  			modifier);
 		MenuSite.addLine(this,"Go","Tick (Single Step)",modifier);
-		MenuSite.addLine(this,"Go","Agonizing",	 	  	modifier);
-		MenuSite.addLine(this,"Go","Slow",		 		modifier);
-		MenuSite.addLine(this,"Go","Medium",	 	 	modifier);
-		MenuSite.addLine(this,"Go","Fast",				modifier); // {=endSetup}
+		//speed mode
+		ControlSpeed.getInstance().MenusLine();
+		//MenuSite.addLine(this,"Go","Agonizing",	 	  	modifier);
+		//MenuSite.addLine(this,"Go","Slow",		 		modifier);
+		//MenuSite.addLine(this,"Go","Medium",	 	 	modifier);
+		//MenuSite.addLine(this,"Go","Fast",				modifier); // {=endSetup}
 	}	//{=endCreateMenus}
 
 	private Publisher publisher = new Publisher();

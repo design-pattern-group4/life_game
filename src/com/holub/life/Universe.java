@@ -113,7 +113,7 @@ public class Universe extends JPanel
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				System.out.println(e.getKeyChar());
+				System.out.println("---" + e.getKeyChar() + "---");
 
 				Rectangle bounds = getBounds();
 				bounds.x = 0;
