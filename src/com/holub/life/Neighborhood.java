@@ -61,8 +61,10 @@ public final class Neighborhood implements Cell {
 	 *  not put into the grid, so you can reuse it if you like.
 	 */
 
+	//초기화
 	public Neighborhood(Cell prototype)
 	{
+
 		this.gridSize = GridCellsize.getInstance().getGridSize();
  		this.grid = new Cell[gridSize][gridSize];
 
@@ -460,7 +462,11 @@ public final class Neighborhood implements Cell {
 	}
 
 	public int widthInCells()
-	{	return gridSize * grid[0][0].widthInCells();
+	{
+		//System.out.println(">>>>>>>>>>>>>>>>>>>>"+GridCellsize.getInstance().getGridSize());
+		//return GridCellsize.getInstance().getGridSize() * grid[0][0].widthInCells();
+
+		return gridSize * grid[0][0].widthInCells();
 	}
 
 	// cell 싹 다 dead 상태로 만든다고 함.????? 다 지워!!!
