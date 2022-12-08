@@ -1,6 +1,5 @@
 package com.holub;
 
-import com.holub.life.Clock;
 import com.holub.life.speed.ControlSpeed;
 import com.holub.life.speed.QuiteSlow;
 import com.holub.life.speed.Speed;
@@ -9,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MainTest {
+class SpeedTest {
 
     @Test
     public void speedController(){
