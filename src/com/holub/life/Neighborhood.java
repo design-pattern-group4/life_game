@@ -443,6 +443,16 @@ public final class Neighborhood implements Cell {
 	{	return gridSize * grid[0][0].widthInCells();
 	}
 
+	@Override
+	public Cell[][] getGrid() {
+		return grid;
+	}
+
+	public boolean isAmActive(int row, int col) {
+		System.out.println("Neighborhood isAmActive");
+		return grid[row][col].isAmActive(row, col);
+	}
+
 	public void clear()
 	{	activeEdges.clear();
 
@@ -452,7 +462,6 @@ public final class Neighborhood implements Cell {
 
 		amActive = false;
 	}
-
 
 
 	/** Cause subcells to add an annotation to the indicated

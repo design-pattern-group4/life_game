@@ -99,7 +99,9 @@ public final class Resident implements Cell
 	}
 
 	public void userClicked(Point here, Rectangle surface)
-	{	amAlive = !amAlive;
+	{
+		System.out.println("Resident userClicked");
+		amAlive = !amAlive;
 	}
 
 	public void userSelected(Point here, Rectangle surface) {
@@ -108,9 +110,21 @@ public final class Resident implements Cell
 	}
 
 	public void	   clear()			{amAlive = willBeAlive = false; }
+
+	@Override
+	public boolean isAmActive(int row, int col) {
+		System.out.println("Resident isAmActive");
+		return amAlive;
+	}
+
 	public boolean isAlive()		{return amAlive;			    }
 	public Cell    create()			{return new Resident();			}
 	public int 	   widthInCells()	{return 1;}
+
+	@Override
+	public Cell[][] getGrid() {
+		return getGrid();
+	}
 
 	public Direction isDisruptiveTo()
 	{	return isStable() ? Direction.NONE : Direction.ALL ;

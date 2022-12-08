@@ -10,6 +10,7 @@ public class SampleLife extends JFrame {
     private static JComponent universe;
 
     public SampleLife() {
+        super("채조보양's The Game of Life. ");
         MenuSite.establish(this);        //{=life.java.establish}
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
