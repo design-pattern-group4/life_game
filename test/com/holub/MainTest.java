@@ -7,21 +7,27 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
     @Test
-    public void add(){
+    public void EqualSingletonInstanceTest(){
 
-        //assertEquals(1 + 3, 4);
         //given
-//        GridCellsize testsingleton = GridCellsize.getInstance(8,8);
-//        GridCellsize testsingleton2 = GridCellsize.getInstance(4,8);
+        GridCellsize testsingleton = GridCellsize.getInstance();
+        GridCellsize testsingleton2 = GridCellsize.getInstance();
 
 
         //when
-
-
-
-
-
+        testsingleton.changeGridSize(4);
+        testsingleton2.changeGridSize(2);
 
         //then
+
+        //1개의 instance만 생성하므로 같아야 한다.
+        assertEquals(testsingleton,testsingleton2);
+
+        //마찬가지로 1개의 instance만 생성하기 때문에, 마지막 2로 바뀐 값으로 같아야 한다.
+        assertEquals(testsingleton.getGridSize(),testsingleton2.getGridSize());
+        System.out.println(testsingleton.getGridSize());
+        System.out.println(testsingleton2.getGridSize());
+
     }
+
 }
