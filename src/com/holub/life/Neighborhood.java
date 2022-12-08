@@ -462,14 +462,19 @@ public final class Neighborhood implements Cell {
 	}
 
 	public int widthInCells()
-	{
-		//System.out.println(">>>>>>>>>>>>>>>>>>>>"+GridCellsize.getInstance().getGridSize());
-		//return GridCellsize.getInstance().getGridSize() * grid[0][0].widthInCells();
-
-		return gridSize * grid[0][0].widthInCells();
+	{	return gridSize * grid[0][0].widthInCells();
 	}
 
-	// cell 싹 다 dead 상태로 만든다고 함.????? 다 지워!!!
+	@Override
+	public Cell[][] getGrid() {
+		return grid;
+	}
+
+	public boolean isAmActive(int row, int col) {
+		System.out.println("Neighborhood isAmActive");
+		return grid[row][col].isAmActive(row, col);
+	}
+
 	public void clear()
 	{	activeEdges.clear();
 

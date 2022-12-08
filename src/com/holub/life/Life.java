@@ -1,8 +1,6 @@
 package com.holub.life;
 
-import com.holub.ui.MenuSite;
-import com.holub.ui.MenuVisitor;
-
+import com.holub.ui.*;
 import javax.swing.*;
 import java.awt.*;
 

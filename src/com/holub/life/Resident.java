@@ -99,7 +99,9 @@ public final class Resident implements Cell
 	}
 
 	public void userClicked(Point here, Rectangle surface)
-	{	amAlive = !amAlive;
+	{
+		System.out.println("Resident userClicked");
+		amAlive = !amAlive;
 	}
 
 	public void userSelected(Point here, Rectangle surface) {
