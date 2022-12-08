@@ -202,6 +202,7 @@ public class Universe extends JPanel
 						{
 							public void actionPerformed(ActionEvent e)
 						{
+							isFirst = true;
 							changeMap(2);
 						}
 						}
@@ -211,7 +212,9 @@ public class Universe extends JPanel
 				(	this, "MapSize", "4X4",
 						new ActionListener()
 						{	public void actionPerformed(ActionEvent e)
-						{	changeMap(4);
+						{
+							isFirst = true;
+							changeMap(4);
 						}
 						}
 				);
@@ -220,7 +223,9 @@ public class Universe extends JPanel
 				(	this, "MapSize", "8X8",
 						new ActionListener()
 						{	public void actionPerformed(ActionEvent e)
-						{	changeMap(8);
+						{
+							isFirst = true;
+							changeMap(8);
 						}
 						}
 				);

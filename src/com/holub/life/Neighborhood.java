@@ -434,6 +434,7 @@ public final class Neighborhood implements Cell {
 		grid[row][column].userClicked(position, subcell); //{=Neighborhood.userClicked.call}
 		amActive = true;
 		rememberThatCellAtEdgeChangedState(row, column);
+
 	}
 
 	@Override
@@ -471,6 +472,8 @@ public final class Neighborhood implements Cell {
 				grid[row][column].clear();
 
 		amActive = false;
+		amSelected = false;
+
 	}
 
 

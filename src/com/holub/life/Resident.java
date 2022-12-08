@@ -108,7 +108,10 @@ public final class Resident implements Cell
 		amSelected = !amSelected;
 	}
 
-	public void	   clear()			{amAlive = willBeAlive = false; }
+	public void clear() {
+		amAlive = willBeAlive = false;
+		amSelected = false;
+	}
 
 	@Override
 	public void changeMap(int size) {								}
