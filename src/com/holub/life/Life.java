@@ -24,7 +24,7 @@ public final class Life extends JFrame
 
 	private Life()
 	{
-		super("채조보양's The Game of Life. ");
+		super("채조보's The Game of Life. ");
 
 
 		// Must establish the MenuSite very early in case
