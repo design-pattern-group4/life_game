@@ -12,7 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class MainTest {
 
     @Test
-    public void add(){
+    public void speedController(){
+
         // given
         Speed verySlow = new QuiteSlow();
         Speed veryFast = new VeryFast();
@@ -20,12 +21,10 @@ class MainTest {
         ControlSpeed cs2 = ControlSpeed.getInstance();
 
         // when
-        cs1.settingSpeed(verySlow);
-        cs2.settingSpeed(veryFast);
+        cs1.setSpeed(verySlow);
+        cs2.setSpeed(veryFast);
 
         // then
         assertEquals(cs1.getSpeed(), cs2.getSpeed());
-
-        //
     }
 }

@@ -34,7 +34,7 @@ public class ControlSpeed {
         speedList.add(new VeryFast());  //5
 
     }
-    public void settingSpeed(Speed speed){
+    public void setSpeed(Speed speed){
         this.speed = speed;
     }
     public Speed getSpeed(){return speed;}
@@ -53,11 +53,11 @@ public class ControlSpeed {
                 int cnt = Arrays.asList(stringArray).indexOf(name);
                 //System.out.println( "************22****"+cnt+"/////////"+name );
                 if(cnt>-1){
-                    settingSpeed(speedList.get(cnt));
+                    setSpeed(speedList.get(cnt));
                     Clock.instance().startTicking(speed.getSpeed());
                 }
                 else { //Halt
-                    settingSpeed(speedList.get(cnt));
+                    setSpeed(speedList.get(cnt));
                     Clock.instance().startTicking(0);
                 }
             }
