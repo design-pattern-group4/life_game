@@ -15,7 +15,6 @@ import java.awt.*;
 
 public final class Resident implements Cell
 {
-
 	private static final Color BORDER_COLOR  = Colors.DARK_YELLOW;
 	private static final Color LIVE_COLOR 	= Color.RED;
 	private static final Color DEAD_COLOR   = Colors.LIGHT_YELLOW;
@@ -108,6 +107,12 @@ public final class Resident implements Cell
 		amSelected = !amSelected;
 	}
 
+	@Override
+	public boolean isAmActive(int row, int col) {
+		System.out.println("Resident isAmActive");
+		return amAlive;
+	}
+
 	public void clear() {
 		amAlive = willBeAlive = false;
 		amSelected = false;
@@ -119,6 +124,11 @@ public final class Resident implements Cell
 	public boolean isAlive()		{return amAlive;			    }
 	public Cell    create()			{return new Resident();			}
 	public int 	   widthInCells()	{return 1;}
+
+	@Override
+	public Cell[][] getGrid() {
+		return getGrid();
+	}
 
 	public Direction isDisruptiveTo()
 	{	return isStable() ? Direction.NONE : Direction.ALL ;

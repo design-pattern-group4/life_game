@@ -22,7 +22,7 @@ public final class Life extends JFrame
 
 	private Life()
 	{
-		super("채조보양's The Game of Life. ");
+		super("채조보's The Game of Life. ");
 
 		//1. 메인프레임을 만들어 메뉴사이트를 설치하고
 		// Must establish the MenuSite very early in case

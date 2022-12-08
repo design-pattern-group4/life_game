@@ -66,6 +66,7 @@ public interface Cell // cell interface고 이거 구현하는게 neighborhood
 	 */
 	int widthInCells();
 
+	Cell[][] getGrid();
 	/** Return a fresh (newly created) object identical to yourself
 	 *  in content.
 	 */
@@ -85,6 +86,7 @@ public interface Cell // cell interface고 이거 구현하는게 neighborhood
 	// cell 전부 다 dead 상태로 만드네.........
 	void clear();
 
+	boolean isAmActive(int row, int col);
 	/**
 	 *	The Cell.Memento interface stores the state
 	 *	of a Cell and all its subcells for future restoration.
@@ -148,9 +150,21 @@ public interface Cell // cell interface고 이거 구현하는게 neighborhood
 		public void 	 clear()		   	{						  }
 
 		@Override
+		public boolean isAmActive(int row, int col) {
+			return false;
+		}
+
+
+		@Override
 		public void changeMap(int size) {}
 
 		public int 		 widthInCells()  	{return 0;				  }
+
+		@Override
+		public Cell[][] getGrid() {
+			return new Cell[0][];
+		}
+
 		public boolean	 transition()		{return false;			  }
 
 		public void	userClicked(Point h, Rectangle s				){}
