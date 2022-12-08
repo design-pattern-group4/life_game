@@ -141,14 +141,14 @@ public class Universe extends JPanel
 				Rectangle bounds = getBounds();
 				bounds.x = 0;
 				bounds.y = 0;
-				int pixelsPerCell = (bounds.width / gcsize.getGridSize()) / gcsize.getGridSize() ;
-				System.out.println(pixelsPerCell);
-
+				//int pixelsPerCell = (bounds.width / gcsize.getGridSize()) / gcsize.getGridSize() ;
+				gcsize.calculatePixelsPercell(bounds.width);
+				System.out.println(gcsize.getPixelsPerCell());
 				before = new Point(cur.x, cur.y);
 
 				KeyBoardBehavior keyStrategy = getKeyBoardStrategy(e.getKeyChar());
 				if(keyStrategy != null){
-					keyStrategy.action(outermostCell, cur, before, bounds, pixelsPerCell, isFirst);
+					keyStrategy.action(outermostCell, cur, before, bounds, gcsize.getPixelsPerCell(), isFirst);
 				}
 
 				isFirst = false;
@@ -199,7 +199,8 @@ public class Universe extends JPanel
 		MenuSite.addLine
 				(	this, "MapSize", "2X2",
 						new ActionListener()
-						{	public void actionPerformed(ActionEvent e)
+						{
+							public void actionPerformed(ActionEvent e)
 						{
 							changeMap(2);
 						}
