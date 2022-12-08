@@ -83,6 +83,7 @@ public class Clock
 	/** Create the menu that controls the clock speed and
 	 *  put it onto the menu site. 
 	 */
+	//speed menu separated
 	private void createMenus()
 	{
 		// First set up a single listener that will handle all the

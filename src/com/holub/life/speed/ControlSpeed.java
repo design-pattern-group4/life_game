@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//speed menu separated
 public class ControlSpeed {
     private static ControlSpeed controlSpeed = new ControlSpeed();
     Speed speed;
