@@ -37,6 +37,7 @@ public class ControlSpeed {
     public void settingSpeed(Speed speed){
         this.speed = speed;
     }
+    public Speed getSpeed(){return speed;}
 
     public void MenusLine(){
         for(Speed version : speedList) {
@@ -50,7 +51,7 @@ public class ControlSpeed {
                 String name = ((JMenuItem)e.getSource()).getName();
 
                 int cnt = Arrays.asList(stringArray).indexOf(name);
-                System.out.println( "************22****"+cnt+"/////////"+name );
+                //System.out.println( "************22****"+cnt+"/////////"+name );
                 if(cnt>-1){
                     settingSpeed(speedList.get(cnt));
                     Clock.instance().startTicking(speed.getSpeed());
