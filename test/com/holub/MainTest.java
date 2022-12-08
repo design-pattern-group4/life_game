@@ -19,9 +19,6 @@ class MainTest {
         ControlSpeed cs1 = ControlSpeed.getInstance();
         ControlSpeed cs2 = ControlSpeed.getInstance();
 
-        //ControlSpeed cd = new ControlSpeed();
-        //ControlSpeed.getInstance().settingSpeed(verySlow);
-
         // when
         cs1.settingSpeed(verySlow);
         cs2.settingSpeed(veryFast);
