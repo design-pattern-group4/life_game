@@ -66,6 +66,7 @@ public interface Cell
 	 */
 	int widthInCells();
 
+	Cell[][] getGrid();
 	/** Return a fresh (newly created) object identical to yourself
 	 *  in content.
 	 */
@@ -84,6 +85,7 @@ public interface Cell
 
 	void clear();
 
+	boolean isAmActive(int row, int col);
 	/**
 	 *	The Cell.Memento interface stores the state
 	 *	of a Cell and all its subcells for future restoration.
@@ -143,7 +145,19 @@ public interface Cell
 		public Cell 	 create()	   	   	{return this;			  }
 		public Direction isDisruptiveTo()	{return Direction.NONE;	  }
 		public void 	 clear()		   	{						  }
+
+		@Override
+		public boolean isAmActive(int row, int col) {
+			return false;
+		}
+
 		public int 		 widthInCells()  	{return 0;				  }
+
+		@Override
+		public Cell[][] getGrid() {
+			return new Cell[0][];
+		}
+
 		public boolean	 transition()		{return false;			  }
 
 		public void	userClicked(Point h, Rectangle s				){}
