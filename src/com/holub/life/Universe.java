@@ -79,9 +79,9 @@ public class Universe extends JPanel
 		// => negiborhood gridsize가 여기서 정해짐. 즉, gridsize를 계속 바꾸면 negiborhood에 있는 값도 계속 바뀜
 		// 즉, 다른 클래스간 데이터 공유가 쉬워야함. 여러 클래스에서 접근하여 사용하기 때문에, 많은 인스턴스가 만들어지면 좋지가 않음. 한개만 존재하는게 좋음.(?) -> singleton
 		outermostCell = new Neighborhood
-						(	gcsize.getGridSize(),
+						(
 							new Neighborhood
-							(	gcsize.getGridSize(),
+							(
 								new Resident()
 							)
 						);

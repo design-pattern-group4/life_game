@@ -24,6 +24,16 @@ public class GridCellsize {
         return uniqueInstance;
     }
 
+    public static GridCellsize getInstance() {
+        if (uniqueInstance== null) {
+            synchronized(GridCellsize.class) {
+                if (uniqueInstance== null)
+                    uniqueInstance= new GridCellsize(8, 8);
+            }
+        }
+        return uniqueInstance;
+    }
+
 
     public void calculatePixelsPercell(int width ){
         pixelsPerCell = (width /getGridSize()) /getGridSize() / (getCellSize()/getGridSize()) ;

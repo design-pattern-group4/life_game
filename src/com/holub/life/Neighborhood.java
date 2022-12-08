@@ -61,9 +61,9 @@ public final class Neighborhood implements Cell {
 	 *  not put into the grid, so you can reuse it if you like.
 	 */
 
-	public Neighborhood(int gridSize, Cell prototype)
+	public Neighborhood(Cell prototype)
 	{
-		this.gridSize = gridSize;
+		this.gridSize = GridCellsize.getInstance().getGridSize();
  		this.grid = new Cell[gridSize][gridSize];
 
 		for( int row = 0; row < gridSize; ++row )
@@ -90,7 +90,7 @@ public final class Neighborhood implements Cell {
 	 */
 
 	public Cell create()
-	{	return new Neighborhood(gridSize, grid[0][0]);
+	{	return new Neighborhood(grid[0][0]);
 	}
 
 	/** Became stable on the last clock tick. One more refresh is
