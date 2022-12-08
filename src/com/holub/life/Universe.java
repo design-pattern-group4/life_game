@@ -297,4 +297,32 @@ public class Universe extends JPanel
 			}
 		);
 	}
+
+	public Cell getOutermostCell() {
+		return outermostCell;
+	}
+
+	public static Point getBefore() {
+		return before;
+	}
+
+	public static Point getCur() {
+		return cur;
+	}
+
+	public static boolean getIsFirst() {
+		return isFirst;
+	}
+
+	public static List<KeyBoardBehavior> getKeyBoardStrategies() {
+		return keyBoardStrategies;
+	}
+
+	public static int getDefaultGridSize(){
+		return DEFAULT_GRID_SIZE;
+	}
+
+	public static int getDefaultCellSize(){
+		return DEFAULT_CELL_SIZE;
+	}
 }
