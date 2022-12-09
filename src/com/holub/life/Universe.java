@@ -53,7 +53,8 @@ public class Universe extends JPanel
 		outermostCell.clear();
 		gcsize.changeGridSize(gridsize);
 
-		outermostCell.changeMap(gcsize.getGridSize());
+		//outermostCell.changeMap(gcsize.getGridSize());
+		outermostCell.changeMap2();
 		repaint();
 
 	}

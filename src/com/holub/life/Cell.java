@@ -108,6 +108,8 @@ public interface Cell // cell interface고 이거 구현하는게 neighborhood
 
 	void changeMap(int size);
 
+	void changeMap2();
+
 	/**  This method is used internally to save or restore the state
 	 *   of a cell from a memento.
 	 *   @return true if this cell was modified by the transfer.
@@ -157,6 +159,9 @@ public interface Cell // cell interface고 이거 구현하는게 neighborhood
 
 		@Override
 		public void changeMap(int size) {}
+
+		@Override
+		public void changeMap2() {}
 
 		public int 		 widthInCells()  	{return 0;				  }
 

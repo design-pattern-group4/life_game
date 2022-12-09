@@ -123,6 +123,11 @@ public final class Resident implements Cell
 	@Override
 	public void changeMap(int size) {								}
 
+	@Override
+	public void changeMap2() {
+
+	}
+
 	public boolean isAlive()		{return amAlive;			    }
 	public Cell    create()			{return new Resident();			}
 	public int 	   widthInCells()	{return 1;}

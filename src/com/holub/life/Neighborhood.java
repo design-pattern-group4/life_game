@@ -79,8 +79,18 @@ public final class Neighborhood implements Cell {
 
 	}
 
+
 	public void changeMap(int size){
 		setGridSize(size);
+
+	}
+
+	private void setGridSize2(int gridSize){
+		this.gridSize = gridSize;
+	}
+
+	public void changeMap2(){
+		setGridSize2(GridCellsize.getInstance().getGridSize());
 
 	}
 
