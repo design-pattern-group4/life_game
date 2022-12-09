@@ -1,22 +1,14 @@
 package com.holub.life.speed;
 
 import com.holub.life.Clock;
-import com.holub.ui.MenuSite;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
+import com.holub.ui.VisitorElement;
+import com.holub.ui.VisitorInterface;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 //speed menu separated
 public class ControlSpeed {
     private static ControlSpeed controlSpeed = new ControlSpeed();
     Speed speed;
-    String[] stringArray = {"QuiteSlow","Agonizing","Slow","Medium","Fast","VeryFast"};
-    List<Speed> speedList = new ArrayList<Speed>();
 
     //instance only one
     public static ControlSpeed getInstance() {
@@ -26,41 +18,26 @@ public class ControlSpeed {
     //default is Agonizing
     private ControlSpeed() {
         speed = new Agonizing(); //default
-        speedList.add(new QuiteSlow()); //0
-        speedList.add(new Agonizing()); //1 --
-        speedList.add(new Slow());      //2
-        speedList.add(new Medium());    //3 --
-        speedList.add(new Fast());      //4 --
-        speedList.add(new VeryFast());  //5
-
+    }
+    ArrayList<VisitorElement> getSpeeds(){
+        ArrayList<VisitorElement>elements = new ArrayList<>();
+        elements.add(new Halt());
+        elements.add(new Agonizing());
+        elements.add(new Slow());
+        elements.add(new Medium());
+        elements.add(new Fast());
+        elements.add(new VeryFast());  //5
+        return elements;
+    }
+    public void addMenus(VisitorInterface visitor){
+        for(VisitorElement element:getSpeeds()){
+            element.accept(visitor);
+        }
     }
     public void setSpeed(Speed speed){
         this.speed = speed;
+        Clock.instance().startTicking(speed.getSpeed());
+        Clock.instance().startTicking(speed.getSpeed());
     }
     public Speed getSpeed(){return speed;}
-
-    public void MenusLine(){
-        for(Speed version : speedList) {
-            MenuSite.addLine(this,"Go", version.getName(), modifier);
-        }
-    }
-    ActionListener modifier =
-            new ActionListener()
-            {	public void actionPerformed(ActionEvent e)
-            {
-                String name = ((JMenuItem)e.getSource()).getName();
-
-                int cnt = Arrays.asList(stringArray).indexOf(name);
-                //System.out.println( "************22****"+cnt+"/////////"+name );
-                if(cnt>-1){
-                    setSpeed(speedList.get(cnt));
-                    Clock.instance().startTicking(speed.getSpeed());
-                }
-                else { //Halt
-                    setSpeed(speedList.get(cnt));
-                    Clock.instance().startTicking(0);
-                }
-            }
-            };
-
 }
