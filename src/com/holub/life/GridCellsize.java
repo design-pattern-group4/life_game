@@ -24,6 +24,7 @@ public class GridCellsize {
         return uniqueInstance;
     }
 
+    //초기화!
     public static GridCellsize getInstance() {
         if (uniqueInstance== null) {
             synchronized(GridCellsize.class) {

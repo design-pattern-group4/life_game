@@ -44,7 +44,7 @@ public class Universe extends JPanel
 
 	// The constructor is private so that the universe can be created
 	// only by an outer-class method [Neighborhood.createUniverse()]
-	// private static final 로 초기값 주면... 계속 메모리에 남아 있으니깐 그냥 지웠음.
+	// private static final 로 초기값 주면... 계속 메모리에 남아 있으니깐 지웠음.
 	GridCellsize gcsize  = GridCellsize.getInstance();
 
 	// grid size변경 Function
