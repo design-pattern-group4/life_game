@@ -2,6 +2,7 @@ package com.holub;
 
 import com.holub.keyboard.KeyBoardBehavior;
 import com.holub.life.Cell;
+import com.holub.life.GridCellsize;
 import com.holub.life.SampleLife;
 import com.holub.life.Universe;
 import org.junit.Before;
@@ -21,6 +22,8 @@ public class KeyBoardTest {
     int DEFAULT_CELL_SIZE;
     boolean isFirst;
     Rectangle bounds;
+    //Singleton setting
+    GridCellsize gcsize = GridCellsize.getInstance();
     @Before
     public void setUp() throws Exception {
         if (!isInitialized) {
@@ -32,8 +35,9 @@ public class KeyBoardTest {
         outermostCell = universe.getOutermostCell();
         cur = universe.getCur();
         before = universe.getBefore();
-        DEFAULT_GRID_SIZE = universe.getDefaultGridSize();
-        DEFAULT_CELL_SIZE = universe.getDefaultCellSize();
+        //singleton 에서 초기값 불러왔음. test용
+        DEFAULT_GRID_SIZE = gcsize.getGridSize();
+        DEFAULT_CELL_SIZE = gcsize.getCellSize();
         isFirst = universe.getIsFirst();
         bounds = universe.getBounds();
         bounds.x = 0;

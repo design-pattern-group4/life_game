@@ -38,14 +38,14 @@ public class Universe extends JPanel
 	// Universe로 갔음 초기 화하는 부분
 	// gride 사이즈 결정하는 곳
 	// -> 적당한 gride size가 8이라는 것을 발견 했다고함. 너무 작으면 누를 블럭이 많아지나봐
-	private static final int  DEFAULT_GRID_SIZE = 8;
+	//private static final int  DEFAULT_GRID_SIZE = 8;
 	// cell size 결정하는 곳
-	private static final int  DEFAULT_CELL_SIZE = 8;
+	//private static final int  DEFAULT_CELL_SIZE = 8;
 
 	// The constructor is private so that the universe can be created
-	// only by an outer-class method [Neighborhood.createUniverse()].
-
-	GridCellsize gcsize  = GridCellsize.getInstance(DEFAULT_GRID_SIZE,DEFAULT_CELL_SIZE);
+	// only by an outer-class method [Neighborhood.createUniverse()]
+	// private static final 로 초기값 주면... 계속 메모리에 남아 있으니깐 그냥 지웠음.
+	GridCellsize gcsize  = GridCellsize.getInstance();
 
 	// grid size변경 Function
 	//cell이 grid보다 크면 안됨. 따라서, cell size는 처음 8 고정으로 유지하고 mapsize를 변경하는 걸로
@@ -396,12 +396,12 @@ public class Universe extends JPanel
 	public static List<KeyBoardBehavior> getKeyBoardStrategies() {
 		return keyBoardStrategies;
 	}
-
-	public static int getDefaultGridSize(){
-		return DEFAULT_GRID_SIZE;
-	}
-
-	public static int getDefaultCellSize(){
-		return DEFAULT_CELL_SIZE;
-	}
+//
+//	public static int getDefaultGridSize(){
+//		return DEFAULT_GRID_SIZE;
+//	}
+//
+//	public static int getDefaultCellSize(){
+//		return DEFAULT_CELL_SIZE;
+//	}
 }
