@@ -1,6 +1,9 @@
 package com.holub.life.speed;
 
-public class QuiteSlow implements Speed{
+import com.holub.ui.VisitorElement;
+import com.holub.ui.VisitorInterface;
+
+public class QuiteSlow implements Speed, VisitorElement {
     @Override
     public String getName() {
         return "QuiteSlow";
@@ -9,5 +12,14 @@ public class QuiteSlow implements Speed{
     @Override
     public int getSpeed() {
         return 1000;
+    }
+    @Override
+    public String getMenuName() {
+        return "QuiteSlow";
+    }
+
+    @Override
+    public void accept(VisitorInterface visitor) {
+        visitor.visit(this);
     }
 }
