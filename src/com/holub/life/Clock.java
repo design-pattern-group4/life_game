@@ -123,14 +123,6 @@ public class Clock
 				}
 			};
 																	// {=midSetup}
-		MenuSite.addLine(this,"Go","Halt",  			modifier);
-		MenuSite.addLine(this,"Go","Tick (Single Step)",modifier);
-		//speed mode
-		ControlSpeed.getInstance().MenusLine();
-		//MenuSite.addLine(this,"Go","Agonizing",	 	  	modifier);
-		//MenuSite.addLine(this,"Go","Slow",		 		modifier);
-		//MenuSite.addLine(this,"Go","Medium",	 	 	modifier);
-		//MenuSite.addLine(this,"Go","Fast",				modifier); // {=endSetup}
 	}	//{=endCreateMenus}
 
 	private Publisher publisher = new Publisher();

@@ -230,31 +230,6 @@ public class Universe extends JPanel
 						}
 				);
 
-
-
-
-
-
-
-
-
-
-
-
-
-		MenuSite.addLine( this, "Example", "Test",
-				new ActionListener()
-				{	public void actionPerformed(ActionEvent e)
-					{
-						System.out.println("메뉴의 동작");
-					}
-				}
-		);
-
-
-
-
-
 		Clock.instance().addClockListener //{=Universe.clock.subscribe}
 		(	new Clock.Listener()
 			{	public void tick()

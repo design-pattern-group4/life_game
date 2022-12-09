@@ -1,5 +1,6 @@
 package com.holub.life;
 
+import com.holub.life.speed.ControlSpeed;
 import com.holub.ui.*;
 import javax.swing.*;
 import java.awt.*;
@@ -40,7 +41,7 @@ public final class Life extends JFrame
 		getContentPane().add( Universe.instance(), BorderLayout.CENTER); //{=life.java.install}
 
 		MenuVisitor visitor = new MenuVisitor();
-
+		ControlSpeed.getInstance().addMenus(visitor);
 
 
 		pack();
