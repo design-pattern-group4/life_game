@@ -7,7 +7,7 @@ public class ExampleMenu implements VisitorElement {
 
     @Override
     public String getMenuName() {
-        return "예시 메뉴 입니다";
+        return "";
     }
 
     @Override
