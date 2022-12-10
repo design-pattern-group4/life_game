@@ -38,3 +38,23 @@ grid 칸들의 행동 규칙
 선택되어있지 않은 칸 (empty or unpopulated)
 
 - 이웃 3개시 => 선택
+
+#[ 산출물 요약 ]
+1. 전체 소스 코드 -> team4_김보경_조범수_채희선.zip
+
+- pdf 파일 -
+2. 확장한 기능 및 적용한 패턴 내용과 이유 
+3. TestCode (Junit 활용) 설명
+4. Usecase Diagram, Class Diagram, Sequence Diagram 
+
+- team4_김보경_조범수_채희선.ppt -
+5. 발표용 ppt
+
+6. 발표용 데모 동영상 
+7. 최종 제출용 데모 동영상
+
+
+
+
+
+
